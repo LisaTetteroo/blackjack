@@ -33,7 +33,7 @@ public class Card {
     public int getSuit() {
         return suit;
     }
-/*
+
     @Override
     public String toString() {
         return "Card{" +
@@ -43,5 +43,5 @@ public class Card {
                 '}';
     }
 
- */
+
 }

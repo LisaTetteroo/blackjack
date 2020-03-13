@@ -33,7 +33,7 @@ Doelstelling 1: Het deck zijn de kaarten waarmee gepeeld wordt. Er wordt in eers
                 "deck=" + Arrays.toString(deck) +
                 '}';
     }
-
+    
  */
 }
 
