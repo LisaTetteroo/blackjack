@@ -16,24 +16,19 @@ Doelstelling 1: Het deck zijn de kaarten waarmee gepeeld wordt. Er wordt in eers
     public Deck() {
         this.deck = new Card[52];
         int cardNumber = 0;
-        while (cardNumber < deck.length) {
             for (int suit = 0; suit <= 3; suit++) {
-                for (int value = 1; suit < 13; value++) {
-                    this.deck[cardNumber] =new Card(value, suit);
+                for (int value = 1; value <= 13; value++) {
+                    this.deck[cardNumber] = new Card(value, suit);
+                    cardNumber++;
                 }
             }
-            cardNumber++;
-        }
     }
 
-/*
     @Override
     public String toString() {
         return "Deck{" +
                 "deck=" + Arrays.toString(deck) +
                 '}';
     }
-    
- */
 }
 
