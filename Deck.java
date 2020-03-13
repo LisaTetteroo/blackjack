@@ -1,7 +1,7 @@
 package nl.workingtalent.weekopdracht;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
+import java.util.ArrayList;
 
 public class Deck {
 /*
@@ -22,6 +22,15 @@ Doelstelling 1: Het deck zijn de kaarten waarmee gepeeld wordt. Er wordt in eers
                     cardNumber++;
                 }
             }
+    }
+
+    public void shuffle() {
+        for (int i = 0; i < 52; i++) {
+            int random = (int)(Math.random()*(deck.length));
+            Card temp = deck[i];
+            deck[i] = deck[random];
+            deck[random] = temp;
+        }
     }
 
     @Override
