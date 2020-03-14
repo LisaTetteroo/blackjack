@@ -12,13 +12,13 @@ Doelstelling 1: Het deck zijn de kaarten waarmee gepeeld wordt. Er wordt in eers
 // optie voor als tijd: er kan met meerdere decks gespeeld worden.
 */
 
-    public Card[] deck;
-    private int cardsInDeck;
+    static public Card[] deck;
+    static private int cardsInDeck;
 
 
 
     public Deck() {
-        this.deck = new Card[52];
+        deck = new Card[52];
         cardsInDeck = 0;
             for (int suit = 0; suit <= 3; suit++) {
                 for (int value = 1; value <= 13; value++) {
@@ -49,10 +49,10 @@ Doelstelling 1: Het deck zijn de kaarten waarmee gepeeld wordt. Er wordt in eers
         }
         System.out.println("player hand" + Hand.player);
         dealCard(Hand.dealer);
-        System.out.println(Hand.dealer);
+        // System.out.println("dealer hand" + Hand.dealer);
     }
 
-    public void dealCard(ArrayList<Card> recipient) {
+    public static void dealCard(ArrayList<Card> recipient) {
         Card cardDrawn = deck[cardsInDeck - 1];
         recipient.add(cardDrawn);
         cardsInDeck--;
@@ -62,9 +62,7 @@ Doelstelling 1: Het deck zijn de kaarten waarmee gepeeld wordt. Er wordt in eers
 
     @Override
     public String toString() {
-        return "Deck{" +
-                "deck=" + Arrays.toString(deck) +
-                '}';
+        return "deck=" + Arrays.toString(deck);
     }
 }
 
