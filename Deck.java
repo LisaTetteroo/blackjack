@@ -15,8 +15,7 @@ Doelstelling 1: Het deck zijn de kaarten waarmee gepeeld wordt. Er wordt in eers
     public Card[] deck;
     private int cardsInDeck;
 
-    public ArrayList<Card> player = new ArrayList<Card>();
-    public ArrayList<Card> dealer = new ArrayList<Card>();
+
 
     public Deck() {
         this.deck = new Card[52];
@@ -46,9 +45,11 @@ Doelstelling 1: Het deck zijn de kaarten waarmee gepeeld wordt. Er wordt in eers
 
     public void firstDeal() {
         for (int i = 1; i <= 2; i++) {
-            dealCard(player);
+            dealCard(Hand.player);
         }
-        System.out.println(player);
+        System.out.println("player hand" + Hand.player);
+        dealCard(Hand.dealer);
+        System.out.println(Hand.dealer);
     }
 
     public void dealCard(ArrayList<Card> recipient) {
