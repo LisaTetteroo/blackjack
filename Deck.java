@@ -10,6 +10,7 @@ Doelstelling 1: Het deck zijn de kaarten waarmee gepeeld wordt. Er wordt in eers
 --> Deze kaarten moeten geschud kunnen worden --> shuffle()
 --> De karten moeten gedeeld kunnen worden --> deal()
 // optie voor als tijd: er kan met meerdere decks gespeeld worden.
+    --> via contructor aantal decks als argument/parameter en dan dat als loop gebruiken.
 */
 
     static public Card[] deck;
@@ -50,6 +51,7 @@ Doelstelling 1: Het deck zijn de kaarten waarmee gepeeld wordt. Er wordt in eers
             String valueAsString = Card.valueAsString(deck[i].getValue());
             System.out.print(suitAsString + " " + valueAsString + " - ");
         }
+        System.out.println();
         System.out.println();
     }
 
