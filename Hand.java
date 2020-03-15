@@ -13,6 +13,12 @@ public class Hand {
     - Speler kan kaart vragen --> hit()
     - Speler kan stoppen --> quit()
     - punten moeten geteld worden zodat vergelijking gedaan kan worden --> handPoints()
+        Hierbij moet rekening gehouden worden met azen.
+    - er moet op blackjack gecontroleerd worden
+
+    // extra plan: om met meerdere spelers te spelen:
+    --> via contructor aantal spelers als argument/parameter en dan dat als loop gebruiken.
+    --> dan moet ook puntentelling aangepast etcetera.
      */
 
     public static ArrayList<Card> player;
@@ -26,8 +32,9 @@ public class Hand {
     }
 
     public void playerOptions() {
+        System.out.println();
         System.out.println("Choose your action / Kies een actie: \n" +
-                "- stand/pas (S or P)\n" +
+                "- Stand/pas (S or P)\n" +
                 "- Hit/Kaart (H or K)\n" +
                 "- Quit (Q)");
         String option = (input.nextLine()).toUpperCase();
@@ -35,9 +42,18 @@ public class Hand {
             dealerOptions ();
         } else if (option.equals("H") || option.equals("K")) {
             Deck.dealCard(this.player);
-            System.out.println(this.player);
             printHand(player);
-            playerOptions();
+            printHand(dealer);
+            if (handValue(player) < 21) {
+                playerOptions();
+            } else if (handValue(player) == 21){
+                System.out.println();
+                System.out.println("Player has 21 points, dealer wil play now:");
+                dealerOptions ();
+            } else if (handValue(player) > 21) {
+                System.out.println();
+                System.out.println("Player has more than 21 points, player is out, dealer wins");
+            }
         }  else if (option.equals("Q")) {
             System.exit(0);
         }
@@ -64,16 +80,18 @@ public class Hand {
         for (int i=0; i < id.size(); i++) {
             handValuePlayer = handValuePlayer + id.get(i).getPointValue(id.get(i).getValue());
         }
+        handValuePlayer = handValuePlayer - aceSubstraction(id);
         return handValuePlayer;
     }
 
     public void dealerOptions () {
+        System.out.println();
         if (handValue(dealer) < 17) {
             Deck.dealCard(dealer);
             printHand(dealer);
             dealerOptions();
         } else {
-            System.out.println("dealer stands at 17");
+            System.out.println("Dealer stands at 17. Point totals are:");
             checkWinner();
         }
     }
@@ -81,22 +99,23 @@ public class Hand {
     public void checkWinner() {
         int pointsPlayer = handValue(player);
         int pointsDealer = handValue(dealer);
-        System.out.println("player points: " +pointsPlayer);
+        System.out.println("Player points: " +pointsPlayer);
         System.out.println("Dealer points: " + pointsDealer);
+        System.out.println();
         if (pointsDealer > 21 && pointsPlayer > 21) {
-            System.out.println("standoff");
+            System.out.println("Stand-off");
         } else if (pointsDealer > 21 && pointsPlayer <= 21) {
-            System.out.println("player wins");
+            System.out.println("Player wins");
         } else if ( pointsPlayer > 21 && pointsDealer <=21) {
-            System.out.println("dealer wins");
+            System.out.println("Dealer wins");
         } else if (pointsDealer > pointsPlayer) {
-            System.out.println("dealer wins");
+            System.out.println("Dealer wins");
         } else if (pointsPlayer > pointsDealer) {
-            System.out.println("player wins");
+            System.out.println("Player wins");
         } else if (pointsDealer == pointsPlayer && checkBlackJackDealer() == true) {
             System.out.println("Dealer wins");
         } else if (pointsDealer == pointsPlayer) {
-            System.out.println("standoff");
+            System.out.println("Stand-off");
         }
     }
 
@@ -111,7 +130,7 @@ public class Hand {
 
     public boolean checkBlackJackDealerPossible() {
         boolean dealerBlackJack = false;
-        if (handValue(dealer) == 11) {
+        if (handValue(dealer) == 11 || handValue(dealer) == 10) {
             //System.out.println("dealer can still get blackjack");
              dealerBlackJack = true;
         }
@@ -125,5 +144,21 @@ public class Hand {
             dealerBlackJack = true;
         }
         return dealerBlackJack;
+    }
+
+    public int aceSubstraction(ArrayList<Card>  id){
+        int aceCount = 0;
+        int aceSubstraction = 0;
+        for (int i=0; i < id.size(); i++) {
+            if (id.get(i).getValue() == 1) {
+                aceCount++;
+            }
+        }
+        if (aceCount <= 1) {
+            aceSubstraction = 0;
+        } else {
+            aceSubstraction = 10 * (aceCount - 1);
+        }
+        return aceSubstraction;
     }
 }

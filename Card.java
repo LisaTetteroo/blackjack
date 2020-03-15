@@ -38,10 +38,9 @@ public class Card {
         } else if (cardValue >= 11 && cardValue <= 13) {
             pointValue = 10;
         } else if (cardValue == 1){
-            if (!(Hand.player.contains(getValue() >= 10) || !(Hand.player.contains(getValue() == 1)))) { //als hand geen andere aas of 10 punt kaart bevat
+            if (!(Hand.player.contains(getValue() >= 10) || Hand.player.contains(getValue() == 1))) {
                 pointValue = 11;
-            } else { // als hand wel anddere 10 punt of aas bevat
-                // nu  nog plan: als andere kaart aas
+            } else {
                 if (Hand.player.size() <= 2 && Hand.player.contains(getValue() >= 10)){
                     pointValue = 11;
                 } else {
