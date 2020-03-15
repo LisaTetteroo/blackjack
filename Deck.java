@@ -38,16 +38,26 @@ Doelstelling 1: Het deck zijn de kaarten waarmee gepeeld wordt. Er wordt in eers
         }
     }
 
+    /*
     public void printCard() {
         System.out.println(deck[cardsInDeck-1]);
     }
+    */
 
+    public void printDeck() {
+        for (int i = 0; i < 52; i++) {
+            String suitAsString = Card.suitAsString(deck[i].getSuit());
+            String valueAsString = Card.valueAsString(deck[i].getValue());
+            System.out.print(suitAsString + " " + valueAsString + " - ");
+        }
+        System.out.println();
+    }
 
     public void firstDeal() {
         for (int i = 1; i <= 2; i++) {
             dealCard(Hand.player);
         }
-        System.out.println("player hand" + Hand.player);
+        // System.out.println("player hand" + Hand.player);
         dealCard(Hand.dealer);
         // System.out.println("dealer hand" + Hand.dealer);
     }
