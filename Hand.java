@@ -19,10 +19,18 @@ public class Hand {
     // extra plan: om met meerdere spelers te spelen:
     --> via contructor aantal spelers als argument/parameter en dan dat als loop gebruiken.
     --> dan moet ook puntentelling aangepast etcetera.
+    ==> Krijg niet bedacht hoe, want hoe maak ik nieuwe players aan met verschillende naam. Tenzij ik meerdere constructoren maak met elk een ander aantal?
      */
 
-    public static ArrayList<Card> player;
+
     public static ArrayList<Card> dealer;
+    public static ArrayList<Card> player;
+
+    /*
+    public static ArrayList<Card> player1;
+    public static ArrayList<Card> player2;
+    public static ArrayList<Card> player3;
+     */
 
     Scanner input = new Scanner(System.in);
 

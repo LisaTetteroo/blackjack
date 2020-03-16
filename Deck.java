@@ -11,6 +11,7 @@ Doelstelling 1: Het deck zijn de kaarten waarmee gepeeld wordt. Er wordt in eers
 --> De karten moeten gedeeld kunnen worden --> deal()
 // optie voor als tijd: er kan met meerdere decks gespeeld worden.
     --> via contructor aantal decks als argument/parameter en dan dat als loop gebruiken.
+    ==> Done
 */
 
     static public Card[] deck;
@@ -30,12 +31,30 @@ Doelstelling 1: Het deck zijn de kaarten waarmee gepeeld wordt. Er wordt in eers
         cardsInDeck = deck.length;
     }
 
+    public Deck(int aantalDecks) {
+        deck = new Card[(52*aantalDecks)];
+        cardsInDeck = 0;
+        for(int i = 1; i <= aantalDecks; i++) {
+            int cardsInSingleDeck = 0;
+            for (int suit = 0; suit <= 3; suit++) {
+                for (int value = 1; value <= 13; value++) {
+                    this.deck[cardsInDeck] = new Card(value, suit);
+                    cardsInSingleDeck++;
+                    cardsInDeck++;
+                }
+            }
+        }
+        //cardsInDeck = deck.length;
+    }
+
     public void shuffle() {
-        for (int i = 0; i < 52; i++) {
-            int random = (int)(Math.random()*(deck.length));
-            Card temp = deck[i];
-            deck[i] = deck[random];
-            deck[random] = temp;
+        for (int n = 0; n <= 2; n++) {
+            for (int i = 0; i < deck.length; i++) {
+                int random = (int) (Math.random() * (deck.length));
+                Card temp = deck[i];
+                deck[i] = deck[random];
+                deck[random] = temp;
+            }
         }
     }
 
@@ -46,7 +65,7 @@ Doelstelling 1: Het deck zijn de kaarten waarmee gepeeld wordt. Er wordt in eers
     */
 
     public void printDeck() {
-        for (int i = 0; i < 52; i++) {
+        for (int i = 0; i < cardsInDeck; i++) {
             String suitAsString = Card.suitAsString(deck[i].getSuit());
             String valueAsString = Card.valueAsString(deck[i].getValue());
             System.out.print(suitAsString + " " + valueAsString + " - ");
