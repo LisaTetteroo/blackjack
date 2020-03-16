@@ -15,9 +15,6 @@ public class Card {
     private final int value;
     private final int suit;
 
-    public static final int SCHOPPEN = 0, HARTEN = 1, RUITEN = 2, KLAVER = 3;
-    public static final int AAS = 1, BOER = 11, VROUW = 12, HEER = 13;
-
     public Card (int value, int suit) {
         this.value = value;
         this.suit = suit;

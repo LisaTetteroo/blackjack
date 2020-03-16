@@ -31,10 +31,10 @@ Doelstelling 1: Het deck zijn de kaarten waarmee gepeeld wordt. Er wordt in eers
         cardsInDeck = deck.length;
     }
 
-    public Deck(int aantalDecks) {
-        deck = new Card[(52*aantalDecks)];
+    public Deck(int numberOfDecks) {
+        deck = new Card[(52*numberOfDecks)];
         cardsInDeck = 0;
-        for(int i = 1; i <= aantalDecks; i++) {
+        for(int i = 1; i <= numberOfDecks; i++) {
             int cardsInSingleDeck = 0;
             for (int suit = 0; suit <= 3; suit++) {
                 for (int value = 1; value <= 13; value++) {
@@ -44,7 +44,6 @@ Doelstelling 1: Het deck zijn de kaarten waarmee gepeeld wordt. Er wordt in eers
                 }
             }
         }
-        //cardsInDeck = deck.length;
     }
 
     public void shuffle() {
@@ -57,12 +56,6 @@ Doelstelling 1: Het deck zijn de kaarten waarmee gepeeld wordt. Er wordt in eers
             }
         }
     }
-
-    /*
-    public void printCard() {
-        System.out.println(deck[cardsInDeck-1]);
-    }
-    */
 
     public void printDeck() {
         for (int i = 0; i < cardsInDeck; i++) {
@@ -78,9 +71,7 @@ Doelstelling 1: Het deck zijn de kaarten waarmee gepeeld wordt. Er wordt in eers
         for (int i = 1; i <= 2; i++) {
             dealCard(Hand.player);
         }
-        // System.out.println("player hand" + Hand.player);
         dealCard(Hand.dealer);
-        // System.out.println("dealer hand" + Hand.dealer);
     }
 
     public static void dealCard(ArrayList<Card> recipient) {

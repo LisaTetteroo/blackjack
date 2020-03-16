@@ -18,18 +18,16 @@ public class BlackJack {
 
 
         System.out.println("How many deck do you want to play with? Enter a number between 1 and 6");
-        int aantalDecks = Integer.parseInt(input.nextLine());
+        int numberOfDecks = Integer.parseInt(input.nextLine());
         System.out.println();
 
         if (inputYN.toUpperCase().equals("Y")) {
-            Deck gameDeck = new Deck(aantalDecks);
+            Deck gameDeck = new Deck(numberOfDecks);
             Hand hand = new Hand();
             System.out.println("This is the deck we will be playing with:");
             gameDeck.printDeck();
-            //System.out.println(gameDeck);
             gameDeck.shuffle();
             System.out.println("Deck is shuffled, here is the first deal:");
-            System.out.println(gameDeck);
             gameDeck.firstDeal();
             hand.printHand(Hand.player);
             hand.printHand(Hand.dealer);

@@ -27,6 +27,7 @@ public class Hand {
     public static ArrayList<Card> player;
 
     /*
+    voorbereiding meerdere spelers
     public static ArrayList<Card> player1;
     public static ArrayList<Card> player2;
     public static ArrayList<Card> player3;
@@ -41,9 +42,9 @@ public class Hand {
 
     public void playerOptions() {
         System.out.println();
-        System.out.println("Choose your action / Kies een actie: \n" +
-                "- Stand/pas (S or P)\n" +
-                "- Hit/Kaart (H or K)\n" +
+        System.out.println("Choose your action: \n" +
+                "- Stand (S or P)\n" +
+                "- Hit (H or K)\n" +
                 "- Quit (Q)");
         String option = (input.nextLine()).toUpperCase();
         if (option.equals("S") || option.equals("P")) {
@@ -60,7 +61,7 @@ public class Hand {
                 dealerOptions ();
             } else if (handValue(player) > 21) {
                 System.out.println();
-                System.out.println("Player has more than 21 points, player is out, dealer wins");
+                System.out.println("Player has more than 21 points, player busts, dealer wins");
             }
         }  else if (option.equals("Q")) {
             System.exit(0);
@@ -83,7 +84,6 @@ public class Hand {
     }
 
     public int handValue(ArrayList<Card> id) {
-        // getPointValue voor de value van elke card in de hand
         int handValuePlayer = 0;
         for (int i=0; i < id.size(); i++) {
             handValuePlayer = handValuePlayer + id.get(i).getPointValue(id.get(i).getValue());
@@ -111,7 +111,7 @@ public class Hand {
         System.out.println("Dealer points: " + pointsDealer);
         System.out.println();
         if (pointsDealer > 21 && pointsPlayer > 21) {
-            System.out.println("Stand-off");
+            System.out.println("Push");
         } else if (pointsDealer > 21 && pointsPlayer <= 21) {
             System.out.println("Player wins");
         } else if ( pointsPlayer > 21 && pointsDealer <=21) {
@@ -123,14 +123,13 @@ public class Hand {
         } else if (pointsDealer == pointsPlayer && checkBlackJackDealer() == true) {
             System.out.println("Dealer wins");
         } else if (pointsDealer == pointsPlayer) {
-            System.out.println("Stand-off");
+            System.out.println("Push");
         }
     }
 
     public boolean checkBlackJackPlayer() {
         boolean playerBlackJack = false;
         if (handValue(player) == 21) {
-            //System.out.println("player has blackjack");
             playerBlackJack = true;
         }
         return playerBlackJack;
@@ -139,7 +138,6 @@ public class Hand {
     public boolean checkBlackJackDealerPossible() {
         boolean dealerBlackJack = false;
         if (handValue(dealer) == 11 || handValue(dealer) == 10) {
-            //System.out.println("dealer can still get blackjack");
              dealerBlackJack = true;
         }
         return dealerBlackJack;
@@ -148,13 +146,13 @@ public class Hand {
     public boolean checkBlackJackDealer() {
         boolean dealerBlackJack = false;
         if (handValue(dealer) == 21 && dealer.size() == 2) {
-            //System.out.println("dealer has blackjack");
             dealerBlackJack = true;
         }
         return dealerBlackJack;
     }
 
     public int aceSubstraction(ArrayList<Card>  id){
+        // als oplossing voor puntentelling met 2 azen in 1 hand, terwijl er geen split optie is.
         int aceCount = 0;
         int aceSubstraction = 0;
         for (int i=0; i < id.size(); i++) {
