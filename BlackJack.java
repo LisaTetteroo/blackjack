@@ -16,15 +16,18 @@ public class BlackJack {
         String inputYN = input.nextLine();
         System.out.println();
 
+
+        System.out.println("How many deck do you want to play with? Enter a number between 1 and 6");
+        int numberOfDecks = Integer.parseInt(input.nextLine());
+        System.out.println();
+
         if (inputYN.toUpperCase().equals("Y")) {
-            Deck gameDeck = new Deck();
+            Deck gameDeck = new Deck(numberOfDecks);
             Hand hand = new Hand();
             System.out.println("This is the deck we will be playing with:");
             gameDeck.printDeck();
-            //System.out.println(gameDeck);
             gameDeck.shuffle();
             System.out.println("Deck is shuffled, here is the first deal:");
-            //System.out.println(gameDeck);
             gameDeck.firstDeal();
             hand.printHand(Hand.player);
             hand.printHand(Hand.dealer);
@@ -60,6 +63,8 @@ public class BlackJack {
 
         } else if (inputYN.equals("N")) {
             System.exit(0);
+        } else {
+            playBlackJack();
         }
     }
 }
